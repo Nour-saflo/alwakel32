@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2FB60A2-D168-407A-AAF4-BF20087330EF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Al_Wakel_Pro_move_1</RootNamespace>
+    <AssemblyName>Al_Wakel_Pro_move_1</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Al_Wakel_Pro_move_1.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Bunifu.Core, Version=1.11.5.1, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9" />
+    <Reference Include="Bunifu.UI.WinForms.BunifuButton">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDropdown">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuImageButton">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTextbox">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTransition">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu.UI.WinForms.BunifuTransition.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>D:\pr and lab\Doload.org_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v22.2.Core, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v22.2.Core, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v22.2.Core, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v22.2.UI, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.UI, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v22.2.Wizard, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2">
+      <HintPath>D:\pr and lab\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlwakelDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlwakelDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AlwakelDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlwakelDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Core\BackUpDataBase.cs" />
+    <Compile Include="Core\ChangeStateFinancial.cs" />
+    <Compile Include="Core\ConnectionString.cs" />
+    <Compile Include="Core\CurrnceyMang.cs" />
+    <Compile Include="Core\ExportData.cs" />
+    <Compile Include="Core\GlobalUser.cs" />
+    <Compile Include="Core\HelperMessage.cs" />
+    <Compile Include="Core\ValidateTextBox.cs" />
+    <Compile Include="DTO\CurrnceyStatusDtos.cs" />
+    <Compile Include="Enum\StatusOfFinancial.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditUSer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditUSer.Designer.cs">
+      <DependentUpon>EditUSer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddCurncey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddCurncey.Designer.cs">
+      <DependentUpon>frmAddCurncey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmConfirmPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmConfirmPass.Designer.cs">
+      <DependentUpon>frmConfirmPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCreateAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCreateAccount.Designer.cs">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDataForBoxCurncey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDataForBoxCurncey.Designer.cs">
+      <DependentUpon>frmDataForBoxCurncey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditLoginData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditLoginData.Designer.cs">
+      <DependentUpon>frmEditLoginData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGetCurrnceyQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGetCurrnceyQuantity.Designer.cs">
+      <DependentUpon>frmGetCurrnceyQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMainCustomerAcount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMainCustomerAcount.Designer.cs">
+      <DependentUpon>frmMainCustomerAcount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMangerAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMangerAccount.Designer.cs">
+      <DependentUpon>FrmMangerAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMangerCurrncey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMangerCurrncey.Designer.cs">
+      <DependentUpon>frmMangerCurrncey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSetCurrnceyQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSetCurrnceyQuantity.Designer.cs">
+      <DependentUpon>frmSetCurrnceyQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WaitLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WaitLogin.Designer.cs">
+      <DependentUpon>WaitLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AlwakelDataBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlwakelDataBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AlwakelDataBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AlwakelDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlwakelDataBase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Center.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Currency.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CurrencyExchange.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CurrencyOperations.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Operation.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>AlwakelDataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pll\frmAcount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\frmAcount.Designer.cs">
+      <DependentUpon>frmAcount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\AddingAndWithDrawing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\AddingAndWithDrawing.Designer.cs">
+      <DependentUpon>AddingAndWithDrawing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\CustomerInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\CustomerInformation.Designer.cs">
+      <DependentUpon>CustomerInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\frmCustmer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\frmCustmer.Designer.cs">
+      <DependentUpon>frmCustmer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\OprationForMaine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\OprationForMaine.Designer.cs">
+      <DependentUpon>OprationForMaine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pll\Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pll\Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ICurrnceyOperationRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Resourse\TagResourse.cs" />
+    <Compile Include="Services\CurrnceyOperationRepository.cs" />
+    <Compile Include="Services\UserRepository.cs" />
+    <Compile Include="Validation\CurrencyValidation.cs" />
+    <Compile Include="Validation\CustomerValidation.cs" />
+    <Compile Include="Validation\UserValidation.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditUSer.resx">
+      <DependentUpon>EditUSer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddCurncey.resx">
+      <DependentUpon>frmAddCurncey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmConfirmPass.resx">
+      <DependentUpon>frmConfirmPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCreateAccount.resx">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDataForBoxCurncey.resx">
+      <DependentUpon>frmDataForBoxCurncey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditLoginData.resx">
+      <DependentUpon>frmEditLoginData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGetCurrnceyQuantity.resx">
+      <DependentUpon>frmGetCurrnceyQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMainCustomerAcount.resx">
+      <DependentUpon>frmMainCustomerAcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMangerAccount.resx">
+      <DependentUpon>FrmMangerAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMangerCurrncey.resx">
+      <DependentUpon>frmMangerCurrncey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSetCurrnceyQuantity.resx">
+      <DependentUpon>frmSetCurrnceyQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WaitLogin.resx">
+      <DependentUpon>WaitLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\frmAcount.resx">
+      <DependentUpon>frmAcount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\AddingAndWithDrawing.resx">
+      <DependentUpon>AddingAndWithDrawing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\CustomerInformation.resx">
+      <DependentUpon>CustomerInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\frmCustmer.resx">
+      <DependentUpon>frmCustmer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\OprationForMaine.resx">
+      <DependentUpon>OprationForMaine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pll\Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="AlwakelDataSet.xsc">
+      <DependentUpon>AlwakelDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AlwakelDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AlwakelDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AlwakelDataSet.xss">
+      <DependentUpon>AlwakelDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model\AlwakelDataBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AlwakelDataBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AlwakelDataSet1.xsc">
+      <DependentUpon>AlwakelDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="AlwakelDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AlwakelDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AlwakelDataSet1.xss">
+      <DependentUpon>AlwakelDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Model\AlwakelDataBase.edmx.diagram">
+      <DependentUpon>AlwakelDataBase.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.DTO.CurrnceyStatusDtos.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.Currency.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.CurrencyExchange.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.CurrencyOperations.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.Operation.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.Operation1.datasource" />
+    <None Include="Properties\DataSources\Al_Wakel_Pro_move_1.Model.User.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\الصرافة تيست 5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Currency Exchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home Page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stting22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\الاعدادات تيست 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\الحسابات تيست 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\الرئيسية تيست 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d8e9d77e-b8ed-44c7-854c-acef31dda1d1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Headset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhatsApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\AlwakelDataBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AlwakelDataBase.edmx</DependentUpon>
+      <LastGenOutput>AlwakelDataBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\AlwakelDataBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AlwakelDataBase.edmx</DependentUpon>
+      <LastGenOutput>AlwakelDataBase.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Frame 87.png" />
+    <None Include="Resources\Vector2.png" />
+    <None Include="Resources\Vector1.png" />
+    <None Include="Resources\Vector.png" />
+    <None Include="Resources\password_svgrepo.com.png" />
+    <None Include="Resources\Icon.png" />
+    <None Include="Resources\تسجيل الدخول 4.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

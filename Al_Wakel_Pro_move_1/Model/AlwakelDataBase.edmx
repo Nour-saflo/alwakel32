@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AlwakelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Center">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Adderss" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="CurrencyExchange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeAndDate" Type="datetime" />
+          <Property Name="CurrencyFromId" Type="int" />
+          <Property Name="CurrencyToId" Type="int" />
+          <Property Name="QuantityFrom" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QuantityTo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyOperations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OperationsType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CenterId" Type="int" />
+          <Property Name="OperationDate" Type="date" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProviderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdentityNumber" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="CenterId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrencyID" Type="int" Nullable="false" />
+          <Property Name="CenterId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateHis" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CenterId" Type="int" />
+          <Property Name="CurrnceyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasswordForEditQuantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__CurrencyE__Curre__0A9D95DB">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyExchange">
+              <PropertyRef Name="CurrencyFromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyE__Curre__0B91BA14">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyExchange">
+              <PropertyRef Name="CurrencyToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyO__Cente__07C12930">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyO__Curre__05D8E0BE">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyO__UserI__06CD04F7">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Center">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Center">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlwakelModelStoreContainer">
+          <EntitySet Name="Center" EntityType="Self.Center" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrencyExchange" EntityType="Self.CurrencyExchange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrencyOperations" EntityType="Self.CurrencyOperations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operation" EntityType="Self.Operation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CurrencyE__Curre__0A9D95DB" Association="Self.FK__CurrencyE__Curre__0A9D95DB">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyE__Curre__0B91BA14" Association="Self.FK__CurrencyE__Curre__0B91BA14">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyO__Cente__07C12930" Association="Self.FK__CurrencyO__Cente__07C12930">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyO__Curre__05D8E0BE" Association="Self.FK__CurrencyO__Curre__05D8E0BE">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyO__UserI__06CD04F7" Association="Self.FK__CurrencyO__UserI__06CD04F7">
+            <End Role="User" EntitySet="User" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Center" Association="Self.FK_Operation_Center">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Currency" Association="Self.FK_Operation_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Customer" Association="Self.FK_Operation_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_User" Association="Self.FK_Operation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Center" Association="Self.FK_User_Center">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlwakelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Center">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Adderss" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrencyOperations" Relationship="Self.FK__CurrencyO__Cente__07C12930" FromRole="Center" ToRole="CurrencyOperations" />
+          <NavigationProperty Name="Operation" Relationship="Self.FK_Operation_Center" FromRole="Center" ToRole="Operation" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Center" FromRole="Center" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrencyExchange" Relationship="Self.FK__CurrencyE__Curre__0A9D95DB" FromRole="Currency" ToRole="CurrencyExchange" />
+          <NavigationProperty Name="CurrencyExchange1" Relationship="Self.FK__CurrencyE__Curre__0B91BA14" FromRole="Currency" ToRole="CurrencyExchange" />
+          <NavigationProperty Name="CurrencyOperations" Relationship="Self.FK__CurrencyO__Curre__05D8E0BE" FromRole="Currency" ToRole="CurrencyOperations" />
+          <NavigationProperty Name="Operation" Relationship="Self.FK_Operation_Currency" FromRole="Currency" ToRole="Operation" />
+          <Property Name="IsDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CurrencyExchange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeAndDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrencyFromId" Type="Int32" />
+          <Property Name="CurrencyToId" Type="Int32" />
+          <Property Name="QuantityFrom" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QuantityTo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK__CurrencyE__Curre__0A9D95DB" FromRole="CurrencyExchange" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="Self.FK__CurrencyE__Curre__0B91BA14" FromRole="CurrencyExchange" ToRole="Currency" />
+        </EntityType>
+        <EntityType Name="CurrencyOperations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperationsType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CenterId" Type="Int32" />
+          <Property Name="OperationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Center" Relationship="Self.FK__CurrencyO__Cente__07C12930" FromRole="CurrencyOperations" ToRole="Center" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK__CurrencyO__Curre__05D8E0BE" FromRole="CurrencyOperations" ToRole="Currency" />
+          <NavigationProperty Name="User" Relationship="Self.FK__CurrencyO__UserI__06CD04F7" FromRole="CurrencyOperations" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdentityNumber" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CenterId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Operation" Relationship="Self.FK_Operation_Customer" FromRole="Customer" ToRole="Operation" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrencyID" Type="Int32" Nullable="false" />
+          <Property Name="CenterId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Center" Relationship="Self.FK_Operation_Center" FromRole="Operation" ToRole="Center" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Operation_Currency" FromRole="Operation" ToRole="Currency" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Operation_Customer" FromRole="Operation" ToRole="Customer" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Operation_User" FromRole="Operation" ToRole="User" />
+          <Property Name="DateHis" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CenterId" Type="Int32" />
+          <NavigationProperty Name="Center" Relationship="Self.FK_User_Center" FromRole="User" ToRole="Center" />
+          <NavigationProperty Name="CurrencyOperations" Relationship="Self.FK__CurrencyO__UserI__06CD04F7" FromRole="User" ToRole="CurrencyOperations" />
+          <NavigationProperty Name="Operation" Relationship="Self.FK_Operation_User" FromRole="User" ToRole="Operation" />
+          <Property Name="CurrnceyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordForEditQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__CurrencyO__Cente__07C12930">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Center">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Center">
+          <End Role="Center" Type="Self.Center" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Center">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyE__Curre__0A9D95DB">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyExchange">
+              <PropertyRef Name="CurrencyFromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyE__Curre__0B91BA14">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="CurrencyExchange" Type="Self.CurrencyExchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyExchange">
+              <PropertyRef Name="CurrencyToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyO__Curre__05D8E0BE">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurrencyO__UserI__06CD04F7">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="CurrencyOperations" Type="Self.CurrencyOperations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyOperations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operation_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Operation" Type="Self.Operation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Operation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppDataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Center" EntityType="Self.Center" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" />
+          <EntitySet Name="CurrencyExchange" EntityType="Self.CurrencyExchange" />
+          <EntitySet Name="CurrencyOperations" EntityType="Self.CurrencyOperations" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Operation" EntityType="Self.Operation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__CurrencyO__Cente__07C12930" Association="Self.FK__CurrencyO__Cente__07C12930">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Center" Association="Self.FK_Operation_Center">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Center" Association="Self.FK_User_Center">
+            <End Role="Center" EntitySet="Center" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyE__Curre__0A9D95DB" Association="Self.FK__CurrencyE__Curre__0A9D95DB">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyE__Curre__0B91BA14" Association="Self.FK__CurrencyE__Curre__0B91BA14">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyExchange" EntitySet="CurrencyExchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyO__Curre__05D8E0BE" Association="Self.FK__CurrencyO__Curre__05D8E0BE">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Currency" Association="Self.FK_Operation_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurrencyO__UserI__06CD04F7" Association="Self.FK__CurrencyO__UserI__06CD04F7">
+            <End Role="User" EntitySet="User" />
+            <End Role="CurrencyOperations" EntitySet="CurrencyOperations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_Customer" Association="Self.FK_Operation_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operation_User" Association="Self.FK_Operation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Operation" EntitySet="Operation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlwakelModelStoreContainer" CdmEntityContainer="AppDataContext">
+          <EntitySetMapping Name="Center">
+            <EntityTypeMapping TypeName="AlwakelModel.Center">
+              <MappingFragment StoreEntitySet="Center">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Adderss" ColumnName="Adderss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="AlwakelModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyExchange">
+            <EntityTypeMapping TypeName="AlwakelModel.CurrencyExchange">
+              <MappingFragment StoreEntitySet="CurrencyExchange">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TimeAndDate" ColumnName="TimeAndDate" />
+                <ScalarProperty Name="CurrencyFromId" ColumnName="CurrencyFromId" />
+                <ScalarProperty Name="CurrencyToId" ColumnName="CurrencyToId" />
+                <ScalarProperty Name="QuantityFrom" ColumnName="QuantityFrom" />
+                <ScalarProperty Name="QuantityTo" ColumnName="QuantityTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyOperations">
+            <EntityTypeMapping TypeName="AlwakelModel.CurrencyOperations">
+              <MappingFragment StoreEntitySet="CurrencyOperations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OperationsType" ColumnName="OperationsType" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="OperationDate" ColumnName="OperationDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="AlwakelModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operation">
+            <EntityTypeMapping TypeName="AlwakelModel.Operation">
+              <MappingFragment StoreEntitySet="Operation">
+                <ScalarProperty Name="DateHis" ColumnName="DateHis" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlwakelModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="AlwakelModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PasswordForEditQuantity" ColumnName="PasswordForEditQuantity" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CurrnceyName" ColumnName="CurrnceyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CenterId" ColumnName="CenterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
